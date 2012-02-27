@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		0050A65914FB7A4600FE51AA /* KIF-Universal */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 0050A65C14FB7A4600FE51AA /* Build configuration list for PBXAggregateTarget "KIF-Universal" */;
+			buildPhases = (
+				0050A65E14FB7A4A00FE51AA /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "KIF-Universal";
+			productName = "KIF-Universal";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		39160B1113D1E6BB00311E38 /* LoadableCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = 39160B1013D1E6BB00311E38 /* LoadableCategory.h */; };
 		AAB0726C139719AC008AF393 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB0726B139719AC008AF393 /* Foundation.framework */; };
@@ -218,9 +232,26 @@
 			projectRoot = "";
 			targets = (
 				AAB07267139719AC008AF393 /* KIF */,
+				0050A65914FB7A4600FE51AA /* KIF-Universal */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0050A65E14FB7A4A00FE51AA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xcodebuild -target KIF -sdk iphoneos -configuration ${CONFIGURATION}\nxcodebuild -target KIF -sdk iphonesimulator -configuration ${CONFIGURATION}\n\necho `pwd`\nrm -rf \"./build/${CONFIGURATION}-Universal/KIF/\"\ncp -R \"./build/${CONFIGURATION}-iphoneos/KIF\" \"../dist/KIF\"\nlipo -create \"./build/${CONFIGURATION}-iphoneos/libKIF.a\" \"./build/${CONFIGURATION}-iphonesimulator/libKIF.a\" -output \"../dist/libKIF.a\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AAB07264139719AC008AF393 /* Sources */ = {
@@ -244,6 +275,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		0050A65A14FB7A4600FE51AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0050A65B14FB7A4600FE51AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		AAB07270139719AC008AF393 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -302,6 +347,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0050A65C14FB7A4600FE51AA /* Build configuration list for PBXAggregateTarget "KIF-Universal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0050A65A14FB7A4600FE51AA /* Debug */,
+				0050A65B14FB7A4600FE51AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		AAB07262139719AC008AF393 /* Build configuration list for PBXProject "KIF" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
